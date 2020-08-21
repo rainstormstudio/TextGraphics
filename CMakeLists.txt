@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(AsciiEditor)
+project(TextGraphics)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -20,12 +20,12 @@ file(GLOB_RECURSE SRC_FILES "src/*.cpp")
 file(GLOB_RECURSE HEADER_FILES "src/*.hpp")
 
 add_executable(
-    AsciiEditor
+    TextGraphics
     ${SRC_FILES}
     ${HEADER_FILES}
 )
 target_link_libraries(
-    AsciiEditor 
+    TextGraphics 
     ${SDL2_LIBRARY} 
     ${SDL2_IMAGE_LIBRARIES}
     ${SDL2_TTF_LIBRARIES}
