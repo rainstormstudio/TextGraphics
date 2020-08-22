@@ -55,7 +55,7 @@ public:
      * 
      * @param index the index of the tile in the tileset
      */
-    void setIndex(char index);
+    void setIndex(Uint8 index);
 
     /**
      * @brief Set the coordinates of the srcRect

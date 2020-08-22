@@ -65,7 +65,7 @@ Graphics::Graphics(std::string title, std::string tilesetFilename,
     }
 }
 
-void Graphics::setCh(char index, int x, int y) {
+void Graphics::setCh(Uint8 index, int x, int y) {
     if (x < numCols && y < numRows) {
         textDisplay[y][x]->setIndex(index);
     }

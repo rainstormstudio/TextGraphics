@@ -75,7 +75,7 @@ public:
      * @param x the column number
      * @param y the row number
      */
-    void setCh(char index, int x, int y);
+    void setCh(Uint8 index, int x, int y);
 
     /**
      * @brief Set the Fore Color to be (r, b, g, a) at 

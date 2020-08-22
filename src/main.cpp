@@ -38,8 +38,18 @@ int main(int argc, char* argv[]) {
     }
     gfx->clear();
     gfx->importTxt("./assets/txt/test2.txt", true);
+    int x = 0, y = 0;
+    for (unsigned int i = 0; i < 16 * 16; ++i) {
+        if (i > 0 && i % 16 == 0) {
+            x = 0;
+            ++y;
+        }
+        gfx->setCh(i, x, y);
+        gfx->setBackColor(0, 200, 200, 255, x, y);
+        ++x;
+    }
     gfx->render();
-    SDL_Delay(500);
+    SDL_Delay(1000);
 
     delete gfx;
     return 0;

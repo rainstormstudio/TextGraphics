@@ -15,7 +15,7 @@ CTexture::CTexture(SDL_Texture* texture, unsigned int numSrcRows, unsigned int n
 CTexture::~CTexture() {
 }
 
-void CTexture::setIndex(char index) {
+void CTexture::setIndex(Uint8 index) {
     srcRect.x = (index % numSrcCols) * srcRect.w;
     srcRect.y = (index / numSrcCols) * srcRect.h;
 }
