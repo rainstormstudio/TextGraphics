@@ -35,8 +35,8 @@ public:
      * @param texture the texture created from tileset image
      * @param numSrcRows number of rows in the tileset
      * @param numSrcCols number of columns in the tileset
-     * @param tileWidth the width of every tile
-     * @param tileHeight the height of every tile
+     * @param tileWidth the width of every tile in the tileset
+     * @param tileHeight the height of every tile in the tileset
      * @param width the width of the texture to be rendered
      * @param height the height of the texture to be rendered
      */

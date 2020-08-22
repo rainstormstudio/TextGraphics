@@ -226,6 +226,24 @@ public:
      * @return unsigned int 
      */
     unsigned int getScreenCols() const;
+
+    /**
+     * @brief Get the index of column number given the x-coordinate
+     * of the screen
+     * 
+     * @param x the x-coordinate of the screen
+     * @return unsigned int 
+     */
+    unsigned int getPosCol(int x) const;
+
+    /**
+     * @brief Get the index of row number given the y-coordinate
+     * of the screen
+     * 
+     * @param y the y-coordinate of the screen
+     * @return unsigned int 
+     */
+    unsigned int getPosRow(int y) const;
 };
 
 #endif

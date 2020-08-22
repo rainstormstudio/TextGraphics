@@ -242,3 +242,11 @@ void Graphics::render() {
 unsigned int Graphics::getScreenRows() const { return numRows; }
 
 unsigned int Graphics::getScreenCols() const { return numCols; }
+
+unsigned int Graphics::getPosCol(int x) const {
+    return static_cast<unsigned int>(x) / (screenWidth/numCols);
+}
+
+unsigned int Graphics::getPosRow(int y) const {
+    return static_cast<unsigned int>(y) / (screenHeight/numRows);
+}

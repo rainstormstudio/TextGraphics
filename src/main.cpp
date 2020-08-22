@@ -15,6 +15,10 @@ int main(int argc, char* argv[]) {
                     return 0;
                 }
             }
+            int x = 0, y = 0;
+            SDL_GetMouseState(&x, &y);
+            x = gfx->getPosCol(x);
+            y = gfx->getPosRow(y);
             SDL_Delay(50);
             gfx->clear();
             for (int k = 0; k < 9; ++k) {
@@ -32,6 +36,8 @@ int main(int argc, char* argv[]) {
                                       j-k-l, 16-k);
                 }
             }
+            gfx->write("x: " + std::to_string(x), 0, gfx->getScreenRows() - 2);
+            gfx->write("y: " + std::to_string(y), 0, gfx->getScreenRows() - 1);
             gfx->importTxt("./assets/txt/test.txt", true);
             gfx->render();
         }
