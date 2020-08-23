@@ -102,6 +102,7 @@ void Graphics::importTxt(std::string filename, bool transparent) {
             }
             
         }
+        infile.close();
     } else {
         std::cerr << "Could not open file " << filename << std::endl;
     }
