@@ -23,6 +23,7 @@
 #endif
 
 #include "ctexture.hpp"
+#include "texture.hpp"
 #include <vector>
 #include <string>
 #include <fstream>
@@ -111,14 +112,15 @@ public:
     void setBackColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a, int x, int y);
 
     /**
-     * @brief import txt file to the screen; if transparent is true, 
-     * the spaces in txt file will not replace the original content
-     * (ignoring spaces)
+     * @brief draws src region of a Texture to screen 
+     * at the y-th row and the x-th column
      * 
-     * @param filename the file path to the txt file
-     * @param transparent true for ignoring spaces and false otherwise
+     * @param texture the txt texture
+     * @param src source rectangle region
+     * @param x the column number
+     * @param y the row number
      */
-    void importTxt(std::string filename, bool transparent);
+    void drawTexture(Texture* texture, SDL_Rect* src, int x, int y);
 
     /**
      * @brief write content starting at the y-th row and the x-th column

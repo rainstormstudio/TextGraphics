@@ -83,28 +83,23 @@ void Graphics::setBackColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a, int x, int y) {
     }
 }
 
-void Graphics::importTxt(std::string filename, bool transparent) {
-    std::string line;
-    std::ifstream infile {filename};
-    if (infile.is_open()) {
-        int row = 0;
-        while (std::getline(infile, line)) {
-            int len = line.length();
-            if (row < numRows) {
-                for (int i = 0; i < len && i < numCols; ++i) {
-                    if (!transparent || (transparent && line[i] != ' ')) {                        
-                        textDisplay[row][i]->setIndex(line[i]);
-                        textDisplay[row][i]->setForeColor(255, 255, 255, 255);
-                        textDisplay[row][i]->setBackColor(0, 0, 0, 255);      
-                    }
+void Graphics::drawTexture(Texture* texture, SDL_Rect* src, int x, int y) {
+    if (src->x >= 0 && src->x <= texture->getWidth()
+        && src->x + src->w >= 0 && src->x + src->w < texture->getWidth()
+        && src->y >= 0 && src->y <= texture->getHeight()
+        && src->y + src->h >= 0 && src->y + src->h < texture->getHeight()) {
+        for (int i = x; i < x + src->w; ++i) {
+            for (int j = y; j < y + src->h; ++j) {
+                CPixel pixel = texture->getInfo(i - x + src->x, j - y + src->y);
+                if (pixel.ch != 0) {
+                    setCh(pixel.ch, i, j);
+                    setForeColor(pixel.r, pixel.g, pixel.b, pixel.a, i, j);
+                    setBackColor(pixel.br, pixel.bg, pixel.bb, pixel.ba, i, j);
                 }
-                ++row;
             }
-            
         }
-        infile.close();
     } else {
-        std::cerr << "Could not open file " << filename << std::endl;
+        std::cerr << "Error drawing texture: " << texture->getFilename() << std::endl;
     }
 }
 

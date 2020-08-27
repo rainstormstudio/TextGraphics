@@ -37,12 +37,16 @@ int main(int argc, char* argv[]) {
             }
             gfx->write("x: " + std::to_string(x), 0, gfx->getScreenRows() - 2);
             gfx->write("y: " + std::to_string(y), 0, gfx->getScreenRows() - 1);
-            gfx->importTxt("./assets/txt/test.txt", true);
             gfx->render();
         }
     }
     gfx->clear();
-    gfx->importTxt("./assets/txt/test2.txt", true);
+    Texture* texture = new Texture("./assets/txt/pistol.txt");
+    SDL_Rect srcRect;
+    srcRect = {5, 23, 18, 6};
+    gfx->drawTexture(texture, &srcRect, 25, 0);
+    gfx->drawTexture(texture, &srcRect, 25, 8);
+    delete texture;
     int x = 0, y = 0;
     for (unsigned int i = 0; i < 16 * 16; ++i) {
         if (i > 0 && i % 16 == 0) {
@@ -54,7 +58,7 @@ int main(int argc, char* argv[]) {
         ++x;
     }
     gfx->render();
-    SDL_Delay(1000);
+    SDL_Delay(2000);
 
     delete gfx;
     return 0;
