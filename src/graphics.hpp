@@ -217,6 +217,14 @@ public:
     void clear();
 
     /**
+     * @brief clear the screen buffer and textDisplay with ch
+     * 
+     * @param ch the character filling the screen
+     * 
+     */
+    void clear(Uint8 ch);
+
+    /**
      * @brief render the buffer(textDisplay) to the screen
      * 
      */

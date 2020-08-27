@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
             x = gfx->getPosCol(x);
             y = gfx->getPosRow(y);
             SDL_Delay(50);
-            gfx->clear();
+            gfx->clear('0');
             for (int k = 0; k < 9; ++k) {
                 for (int l = 0; l < 20; ++l) {
                     gfx->setCh('@', j-k-l, 16-k);

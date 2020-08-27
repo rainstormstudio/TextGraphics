@@ -49,8 +49,8 @@ Graphics::Graphics(std::string title, std::string tilesetFilename,
         if (tileset == nullptr) {
             std::cerr << "Error creating texture from " << tilesetFilename << ": " << SDL_GetError() << std::endl;
         } else {
-            tileWidth = surface->w / numSrcCols;
-            tileHeight = surface->h / numSrcRows;
+            tileWidth = std::round(1.0 * surface->w / numSrcCols);
+            tileHeight = std::round(1.0 * surface->h / numSrcRows);
         }
         SDL_FreeSurface(surface);
     }
@@ -59,8 +59,12 @@ Graphics::Graphics(std::string title, std::string tilesetFilename,
     for (int i = 0; i < numRows; ++i) {
         textDisplay[i] = std::vector<std::shared_ptr<CTexture>>(numCols);
         for (int j = 0; j < numCols; ++j) {
-            textDisplay[i][j] = std::make_shared<CTexture>(tileset, numSrcRows, numSrcCols, tileWidth, tileHeight, screenWidth/numCols, screenHeight/numRows);
-            textDisplay[i][j]->setDestPosition(j*(screenWidth/numCols), i*(screenHeight/numRows));
+            textDisplay[i][j] = std::make_shared<CTexture>(tileset, 
+                                                            numSrcRows, numSrcCols, 
+                                                            tileWidth, tileHeight, 
+                                                            std::round(1.0 * screenWidth / numCols), 
+                                                            std::round(1.0 * screenHeight / numRows));
+            textDisplay[i][j]->setDestPosition(j * std::round(1.0 * screenWidth / numCols), i * std::round(1.0 * screenHeight / numRows));
         }
     }
 }
@@ -219,6 +223,17 @@ void Graphics::clear() {
     for (int i = 0; i < numRows; ++i) {
         for (int j = 0; j < numCols; ++j) {
             textDisplay[i][j]->setIndex(' ');
+            textDisplay[i][j]->setForeColor(255, 255, 255, 255);
+            textDisplay[i][j]->setBackColor(0, 0, 0, 255);
+        }
+    }
+    SDL_RenderClear(renderer);
+}
+
+void Graphics::clear(Uint8 ch) {
+    for (int i = 0; i < numRows; ++i) {
+        for (int j = 0; j < numCols; ++j) {
+            textDisplay[i][j]->setIndex(ch);
             textDisplay[i][j]->setForeColor(255, 255, 255, 255);
             textDisplay[i][j]->setBackColor(0, 0, 0, 255);
         }
